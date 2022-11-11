@@ -1,0 +1,23 @@
+[
+  {
+    "name": "temperatura vode",
+    "upperValue": "80.0",
+    "lowerValue": "0.0",
+    "unit": "Celzijev stupanj"
+  },
+
+  {
+    "name": "tlak vode",
+    "upperValue": "65.336",
+    "lowerValue": "0.0",
+    "unit": "Bar"
+  },
+
+  {
+    "name": "potrosnja u zadnjih 1 tjedan",
+    "upperValue": "6533.6",
+    "lowerValue": "0.0",
+    "unit": "m3"
+  }
+
+]
