@@ -1,2 +1,2 @@
-# ProgrammingInJava
-All exercises from the Java programming course
+# Java_2020_Lab
+In each folder push related lab
