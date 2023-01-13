@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressService {
@@ -22,5 +23,14 @@ public class AddressService {
 
     public Address saveAddress(Address address){
         return addressRepository.save(address);
+    }
+
+    public boolean deleteAddress(Long id){
+        Optional<Address> addressOptional = addressRepository.findById(id);
+        if(addressOptional.isPresent()) {
+            addressRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

@@ -38,18 +38,20 @@ public class DeviceController {
         return ResponseEntity.ok(deviceService.saveDevice(device));
     }
 
-   /* @GetMapping("/{_year}")
-    ResponseEntity<String> findByYear(@PathVariable Integer _year){
-        return ResponseEntity.ok("GODINA " + _year + " ---- UKUPNA POTROSNJA : " + deviceService.getByYear(_year));
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Long> deleteDevice(@PathVariable Long id) {
+
+        var isRemoved = deviceService.deleteDevice(id);
+
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @GetMapping("/listMonths/{_year}")
-    ResponseEntity<LinkedHashMap<Integer,Integer>> listMonthsByYear(@PathVariable Integer _year){
-        LinkedHashMap<Integer, Integer> linkedHashMap = deviceService.listMonthsByYear(_year);
-        return ResponseEntity.ok(linkedHashMap);
-    }
 
-*/
+
+
 
 
 }

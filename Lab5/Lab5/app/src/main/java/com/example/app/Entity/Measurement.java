@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.time.Month;
 import java.time.Year;
+import java.util.HashSet;
 
 @Data
 @NoArgsConstructor
@@ -38,6 +39,8 @@ public class Measurement {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Device device;
+
+
 
 
     public Measurement(Integer mmonth, Integer yyear, Device device) {

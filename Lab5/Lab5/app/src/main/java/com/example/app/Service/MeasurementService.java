@@ -1,5 +1,6 @@
 package com.example.app.Service;
 
+import com.example.app.Entity.Client;
 import com.example.app.Entity.Device;
 import com.example.app.Entity.Measurement;
 import com.example.app.Repository.MeasurementRepository;
@@ -10,6 +11,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MeasurementService {
@@ -24,6 +26,15 @@ public class MeasurementService {
     public Measurement saveMeasurements(Measurement measurement){
         repository.save(measurement);
         return repository.save(measurement);
+    }
+
+    public boolean deleteMeasurement(Long id){
+        Optional<Measurement> measurementOptional = repository.findById(id);
+        if(measurementOptional.isPresent()) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public Long getByYear(Integer year){
@@ -58,9 +69,21 @@ public class MeasurementService {
             }
         }
         return linkedHashMap;
-
     }
 
+    public Long findMonthInYear(Integer year, Integer month){
+        var ref = new Object(){
+            Long amount = 0L;
+        };
+        List<Measurement> measurements = repository.findByMmonthAndYyear(String.valueOf(Month.of(month)),year);
+        if(!measurements.isEmpty()){
+            measurements.forEach(measurement -> {
+                ref.amount += measurement.getAmount();
+            });
+        return ref.amount;
+        }
+        return ref.amount;
+    }
 
 
 }

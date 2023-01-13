@@ -1,6 +1,7 @@
 package com.example.app.Service;
 
 
+import com.example.app.Entity.Client;
 import com.example.app.Entity.Device;
 import com.example.app.Entity.Measurement;
 import com.example.app.Repository.DeviceRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -19,8 +21,6 @@ public class DeviceService {
     @Autowired
     private DeviceRepository deviceRepository;
 
-    @Autowired
-    private MeasurementRepository measurementRepository;
 
     public List<Device> getDevices(){
         return new ArrayList<>(deviceRepository.findAll());
@@ -29,6 +29,15 @@ public class DeviceService {
     public Device saveDevice(Device device){
         deviceRepository.save(device);
         return deviceRepository.save(device);
+    }
+
+    public boolean deleteDevice(Long id){
+        Optional<Device> deviceOptional = deviceRepository.findById(id);
+        if(deviceOptional.isPresent()) {
+            deviceRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 /*
     public Integer getByYear(Integer year){

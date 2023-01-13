@@ -38,6 +38,17 @@ public class AddressController {
 
     }
 
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Long> deleteAddress(@PathVariable Long id) {
+
+        var isRemoved = addressService.deleteAddress(id);
+
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
 
 
 

@@ -36,6 +36,18 @@ public class ClientController {
 
     }
 
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<Long> deleteClient(@PathVariable Long id) {
+
+        var isRemoved = clientService.deleteClient(id);
+
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+
 
 
 

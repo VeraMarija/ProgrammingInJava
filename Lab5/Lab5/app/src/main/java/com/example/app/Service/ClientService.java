@@ -1,6 +1,7 @@
 package com.example.app.Service;
 
 
+import com.example.app.Entity.Address;
 import com.example.app.Entity.Client;
 import com.example.app.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,16 @@ public class ClientService {
     public Client saveClient(Client client){
         return clientRepository.save(client);
     }
+
+    public boolean deleteClient(Long id){
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        if(clientOptional.isPresent()) {
+            clientRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 
 
 

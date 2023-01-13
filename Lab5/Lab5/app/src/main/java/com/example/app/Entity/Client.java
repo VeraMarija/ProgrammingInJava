@@ -2,6 +2,9 @@ package com.example.app.Entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,8 +24,9 @@ public class Client {
     private String firstName;
     @Column(name= "last_name")
     private String lastName;
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "address_id" , referencedColumnName = "id", unique = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Address address;
 
 
